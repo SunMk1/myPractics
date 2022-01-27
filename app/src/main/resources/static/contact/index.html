@@ -6,6 +6,7 @@
 </head>
 <body>
     <h1>연락처</h1>
+    <h3><a href="form.html">새 연락처</a></h3>
     <table border="1">
         <thead>
             <tr>
@@ -17,24 +18,18 @@
         </thead>
         <tbody id="x-tbody">
             <tr>
-                <td>aaa</td>
-                <td>aaa@test.com</td>
-                <td>010-aaa-aaa</td>
-                <td>bitcamp</td>
+
             </tr>
         </tbody>
     </table>
     
     <script>
-        var arr = [
-            "aaa,aaa@test.com,010-aaa-aaa,bitcamp",
-            "bbb,bbb@test.com,010-bbb-bbb,bitcamp",
-            "ccc,ccc@test.com,010-ccc-ccc,bitcamp"
-        ]
-        console.log(arr)
-
-        var xTbody = document.querySelector("#x-tbody")
-        for (var contacts of arr) {
+        fetch("/contact/list")
+        .then(function(response){
+            return response.json()
+        })
+        .then(function(jsonData){
+            for (var contacts of jsonData) {
             var contact = contacts.split(",")
             var trTag = document.createElement("tr")
             console.log(contact)
@@ -44,9 +39,10 @@
             <td>${contact[2]}</td>
             <td>${contact[3]}</td>`
             console.log(trTag)
-            xTbody.appendChild(trTag)
-        }
-    
+            document.querySelector("#x-tbody").appendChild(trTag)
+            }
+        })
+        
     </script>
 </body>
 </html>

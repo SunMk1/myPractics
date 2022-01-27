@@ -11,14 +11,17 @@ public class ContactController {
 
   @RequestMapping("/contact/list")
   public Object list() {
-    return contacts;
+    String[] contactList = new String[size];
+    for (int i = 0; i < size; i++) {
+      contactList[i] = contacts[i];
+    }
+    return contactList;
   }
 
   @RequestMapping("/contact/add")
   public Object add(String name, String mail, String tel, String company) {
     String contact = name + "," + mail + "," + tel + "," + company;
-    contacts[size] = contact;
-    size++;
-    return 1;
+    contacts[size++] = contact;
+    return size;
   }
 }
