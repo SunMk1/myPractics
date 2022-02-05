@@ -18,17 +18,19 @@
 
 
     <script>
+        // 쿼리스트링으로 이메일 추출...
         var xName = document.querySelector("#x-name")
         var xMail = document.querySelector("#x-mail")
         var xTel = document.querySelector("#x-tel")
         var xCompany = document.querySelector("#x-company")
 
-        document.querySelector("#x-add-btn").addEventListener("click", function(e){
+        document.querySelector("#x-change-btn").addEventListener("click", function(e){
             if (xName.value == "" || xTel.value == ""){
                 alert("필수 입력 사항을 확인해주세요")
                 return
             }
-            fetch(`/contact/add?name=${xName.value}&mail=${xMail.value}&tel=${xTel.value}&company=${xCompany.value}`)
+            // 서버에서 데이터 가져오기 ... 배열 안에 정보들 다시 화면에 뿌림 
+            fetch(`/contact/get?email=${}}`)
             .then(function(response){
                 return response.text()
             })
