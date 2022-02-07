@@ -13,6 +13,7 @@
         회사 : <input id="x-company" type="text"><br>
         별표(*)는 필수 입력 사항입니다.<br>
         <button id="x-update-btn" type="button">변경</button>
+        <button id="x-delete-btn" type="button">삭제</button>
         <button id="x-cancel-btn" type="button">취소</button>
     </form>
 
@@ -73,6 +74,10 @@
                 location.href = "index.html"
             })
         })
+        document.querySelector("#x-delete-btn").addEventListener("click", function(e){
+            fetch(`/contact/delete?mail=${mail}`)
+                location.href = "index.html"
+            })
 
         document.querySelector("#x-cancel-btn").addEventListener("click", function(e){
             location.href = "index.html"

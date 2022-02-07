@@ -21,6 +21,10 @@ public class ContactController {
   @RequestMapping("/contact/add")
   public Object add(String name, String mail, String tel, String company) {
     String contact = name + "," + mail + "," + tel + "," + company;
+    // 배열이 꽉 찼을때 추가되지않게 조치
+    if (size == 5) {
+      return 0;
+    }
     contacts[size++] = contact;
     return size;
   }
@@ -41,6 +45,20 @@ public class ContactController {
     for (int i = 0; i < size; i++) {
       if (contacts[i].split(",")[1].equals(mail)) {
         contacts[i] = contact;
+        return 1;
+      }
+    }
+    return 0;
+  }
+
+  @RequestMapping("/contact/delete")
+  public Object delete(String mail) {
+    for (int i = 0; i < size; i++) {
+      if (contacts[i].split(",")[1].equals(mail)) {
+        for (int j = i + 1; j < size; j++) {
+          contacts[j - 1] = contacts[j];
+        }
+        size--;
         return 1;
       }
     }

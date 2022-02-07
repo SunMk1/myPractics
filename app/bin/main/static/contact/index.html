@@ -26,6 +26,7 @@
     <script>
         fetch("/contact/list")
         .then(function(response){
+            console.log(response)
             return response.json()
         })
         .then(function(jsonData){
