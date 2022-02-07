@@ -26,9 +26,9 @@ public class ContactController {
   }
 
   @RequestMapping("/contact/get")
-  public Object get(String email) {
+  public Object get(String mail) {
     for (int i = 0; i < size; i++) {
-      if (contacts[i].split(",")[1].equals(email)) {
+      if (contacts[i].split(",")[1].equals(mail)) {
         return contacts[i];
       }
     }
