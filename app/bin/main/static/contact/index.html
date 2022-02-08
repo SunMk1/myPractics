@@ -1,49 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>연락처</title>
 </head>
 <body>
-    <h1>연락처</h1>
-    <h3><a href="form.html">새 연락처</a></h3>
     <table border="1">
         <thead>
-            <tr>
-                <th>이름</th>
-                <th>이메일</th>
-                <th>전화</th>
-                <th>회사</th>
-            </tr>
+        <tr>
+            <th>이름</th>
+            <th>이메일</th>
+            <th>전화</th>
+            <th>회사</th>
         </thead>
-        <tbody id="x-tbody">
-            <tr>
-
-            </tr>
-        </tbody>
+    <tbody id="x-tbody">
+        
+    </tbody>
     </table>
-    
     <script>
+        var tbody = document.querySelector("#x-tbody")
+
         fetch("/contact/list")
         .then(function(response){
-            console.log(response)
-            return response.json()
+            return response.text()
         })
-        .then(function(jsonData){
-            for (var contacts of jsonData) {
-            var contact = contacts.split(",")
-            var trTag = document.createElement("tr")
-            console.log(contact)
-
-            trTag.innerHTML = `<td><a href="view.html?mail=${contact[1]}">${contact[0]}</a></td>
+        .then(function(textData){
+            var contact = textData.split(",")
+            var tr = document.createElement("tr")
+            tr.innerHTML = `<td>${contact[0]}</td>
             <td>${contact[1]}</td>
             <td>${contact[2]}</td>
             <td>${contact[3]}</td>`
-            console.log(trTag)
-            document.querySelector("#x-tbody").appendChild(trTag)
-            }
+            tbody.appendChild(tr)
         })
-        
     </script>
 </body>
 </html>
