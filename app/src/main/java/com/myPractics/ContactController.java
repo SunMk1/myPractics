@@ -23,4 +23,14 @@ public class ContactController {
     contacts[size++] = contact;
     return size;
   }
+
+  @RequestMapping("/contact/get")
+  public Object get(String email) {
+    for (int i = 0; i < size; i++) {
+      if (contacts[i].split(",")[1].equals(email)) {
+        return contacts[i];
+      }
+    }
+    return "";
+  }
 }
