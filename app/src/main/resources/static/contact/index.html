@@ -22,16 +22,18 @@
 
         fetch("/contact/list")
         .then(function(response){
-            return response.text()
+            return response.json()
         })
-        .then(function(textData){
-            var contact = textData.split(",")
+        .then(function(jsonData){
+            for (contacts of jsonData) {
+            var contact = contacts.split(",")
             var tr = document.createElement("tr")
             tr.innerHTML = `<td>${contact[0]}</td>
             <td>${contact[1]}</td>
             <td>${contact[2]}</td>
             <td>${contact[3]}</td>`
             tbody.appendChild(tr)
+            }
         })
     </script>
 </body>

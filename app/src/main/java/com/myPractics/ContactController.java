@@ -5,10 +5,22 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class ContactController {
+  String[] contacts = new String[5];
+  int size = 0;
 
   @RequestMapping("/contact/list")
-  public String list() {
-    String contant = "홍길동" + "," + "aaa@test" + "," + "0102211" + "," + "홍컴퍼니";
-    return contant;
+  public Object list() {
+    String[] contactList = new String[size];
+    for (int i = 0; i < size; i++) {
+      contactList[i] = contacts[i];
+    }
+    return contactList;
+  }
+
+  @RequestMapping("/contact/add")
+  public Object add(String name, String email, String tel, String company) {
+    String contact = name +  "," + email+  "," + tel +  "," + company;
+    contacts[size++] = contact;
+    return size;
   }
 }
