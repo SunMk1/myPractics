@@ -45,4 +45,18 @@ public class ContactController {
     }
     return 0;
   }
+
+  @RequestMapping("/contact/delete")
+  public Object delete(String email) {
+    for (int i = 0; i < size; i++) {
+      if (contacts[i].split(",")[1].equals(email)) {
+        for (int j = i + 1; j < contacts.length; j++) {
+          contacts[j - 1] = contacts[j];
+        }
+        size--;
+        return 1;
+      }
+    }
+    return 0;
+  }
 }

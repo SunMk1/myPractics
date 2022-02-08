@@ -12,6 +12,7 @@
         회사:<input type="text" id="x-company"><br>
         (*)별표는 필수 입력 항목입니다.<br>
         <button type="button" id="x-update-btn">변경</button>
+        <button type="button" id="x-delete-btn">삭제</button>
         <button type="button" id="x-cancel-btn">취소</button>
     </form>
     <script>
@@ -39,6 +40,11 @@
                 return
             }
             fetch(`/contact/update?name=${xName.value}&email=${xEmail.value}&tel=${xTel.value}&company=${xCompany.value}`)
+            location.href = "index.html"
+        })
+
+        document.querySelector("#x-delete-btn").addEventListener("click", function(e){
+            fetch(`/contact/delete?email=${xEmail.value}`)
             location.href = "index.html"
         })
 
