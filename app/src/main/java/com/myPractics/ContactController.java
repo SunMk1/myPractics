@@ -33,4 +33,16 @@ public class ContactController {
     }
     return "";
   }
+
+  @RequestMapping("/contact/update")
+  public Object update(String name, String email, String tel, String company) {
+    String contact = name +  "," + email+  "," + tel +  "," + company;
+    for (int i = 0; i < size; i++) {
+      if (contacts[i].split(",")[1].equals(email)) {
+        contacts[i] = contact;
+        return 1;
+      }
+    }
+    return 0;
+  }
 }
